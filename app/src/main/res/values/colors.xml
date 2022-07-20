@@ -10,4 +10,5 @@
     <color name="primary">#064F60</color>
     <color name="secondary">#FFDA47</color>
     <color name="background">#FAFAFA</color>
+    <color name="background_status_bar">#DBDBDB</color>
 </resources>

@@ -15,4 +15,6 @@
     <string name="good_afternoon">Good afternoon</string>
     <string name="add_task">Add task</string>
     <string name="edit_task">Edit task</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
