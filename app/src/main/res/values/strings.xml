@@ -1,3 +1,18 @@
 <resources>
-    <string name="app_name">PurrTodo-List</string>
+    <string name="app_name">PurrTodo</string>
+    <string name="todo">To do</string>
+    <string name="in_progress">In progress</string>
+    <string name="task_detail">Task Detail</string>
+    <string name="description">Description</string>
+    <string name="project">Project</string>
+    <string name="deadline">Deadline</string>
+    <string name="done">Done</string>
+    <string name="save">Save</string>
+    <string name="remove">Remove</string>
+    <string name="see_all">See all</string>
+    <string name="good_morning">Good morning</string>
+    <string name="good_evening">Good evening</string>
+    <string name="good_afternoon">Good afternoon</string>
+    <string name="add_task">Add task</string>
+    <string name="edit_task">Edit task</string>
 </resources>
