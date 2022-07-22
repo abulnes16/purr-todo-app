@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
-            android:text="Leslie Smith"
+            android:text="@string/friend"
             app:layout_constraintStart_toStartOf="@+id/txt_welcome"
             app:layout_constraintTop_toBottomOf="@+id/txt_welcome" />
 
@@ -45,7 +45,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@tools:sample/avatars" />
+            tools:src="@tools:sample/avatars"
+            android:contentDescription="@string/user_profile_picture" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -76,7 +77,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="6dp"
-            android:text="7"
+            android:text="@string/empty_task"
             app:layout_constraintStart_toEndOf="@+id/txt_todo"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -139,7 +140,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="6dp"
-            android:text="7"
+            android:text="@string/empty_task"
             app:layout_constraintStart_toEndOf="@+id/txt_in_progress"
             app:layout_constraintTop_toTopOf="parent" />
 

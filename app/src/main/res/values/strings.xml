@@ -17,4 +17,7 @@
     <string name="edit_task">Edit task</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="user_profile_picture">User profile picture</string>
+    <string name="friend">Friend</string>
+    <string name="empty_task">0</string>
 </resources>
