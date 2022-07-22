@@ -20,4 +20,9 @@
     <string name="user_profile_picture">User profile picture</string>
     <string name="friend">Friend</string>
     <string name="empty_task">0</string>
+    <string name="title">Title</string>
+    <string name="delete">Delete</string>
+    <string name="back_arrow">Back Arrow</string>
+    <string name="project_icon">Project Icon</string>
+    <string name="deadline_icon">Deadline icon</string>
 </resources>
