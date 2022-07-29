@@ -26,6 +26,10 @@
             android:name="taskId"
             app:argType="integer"
             android:defaultValue="0" />
+        <action
+            android:id="@+id/action_addTaskFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/taskDetailFragment"
@@ -39,5 +43,9 @@
         <action
             android:id="@+id/action_taskDetailFragment_to_addTaskFragment"
             app:destination="@id/addTaskFragment" />
+        <action
+            android:id="@+id/action_taskDetailFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment" />
     </fragment>
 </navigation>

@@ -59,9 +59,10 @@
             android:layout_width="145dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
+            android:layout_marginEnd="6dp"
             android:layout_marginBottom="16dp"
-            android:text="@string/save"
 
+            android:text="@string/save"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btn_delete"
             app:layout_constraintHorizontal_bias="0.105"
@@ -72,70 +73,103 @@
             style="@style/PurrButton.Secondary"
             android:layout_width="145dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="16dp"
-
+            android:minHeight="55dip"
             android:text="@string/delete"
-
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.822"
             app:layout_constraintStart_toEndOf="@+id/btn_save" />
 
-        <EditText
-            android:id="@+id/task_title"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/title_layout"
+            style="@style/RoundedTextInput"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
             android:layout_marginTop="16dp"
-            android:ems="10"
-            android:hint="@string/title"
-            android:importantForAutofill="no"
-            android:inputType="textPersonName"
+            android:layout_marginEnd="48dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
-            android:id="@+id/task_project"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txt_task_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/title" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/project_layout"
+            style="@style/RoundedTextInput"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
             android:layout_marginTop="16dp"
-            android:ems="10"
-            android:hint="@string/project"
-            android:importantForAutofill="no"
-            android:inputType="textPersonName"
+            android:layout_marginEnd="48dp"
+            app:boxBackgroundMode="filled"
+            app:boxCornerRadiusBottomEnd="12dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/task_title" />
+            app:layout_constraintTop_toBottomOf="@id/title_layout">
 
-        <EditText
-            android:id="@+id/task_project3"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:layout_marginTop="144dp"
-            android:ems="10"
-            android:hint="@string/description"
-            android:importantForAutofill="no"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.496"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/task_title" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txt_project"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/project" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/task_deadline"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/deadline_layout"
+            style="@style/RoundedTextInput"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
             android:layout_marginTop="16dp"
-            android:ems="10"
-            android:hint="@string/deadline"
-            android:importantForAutofill="no"
-            android:inputType="date"
+            android:layout_marginEnd="48dp"
+            app:boxBackgroundMode="filled"
+            app:boxCornerRadiusBottomEnd="12dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/task_project" />
+            app:layout_constraintTop_toBottomOf="@id/project_layout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txt_deadline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/deadline" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/description_layout"
+            style="@style/RoundedTextInput"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="48dp"
+            app:boxBackgroundMode="filled"
+            app:boxCornerRadiusBottomEnd="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/deadline_layout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txt_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:hint="@string/description"
+                android:inputType="textMultiLine"
+                android:lines="2"
+                android:maxLines="3"
+                android:scrollbars="vertical" />
+        </com.google.android.material.textfield.TextInputLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
