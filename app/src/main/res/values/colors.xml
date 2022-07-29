@@ -6,4 +6,5 @@
     <color name="secondary">#FFDA47</color>
     <color name="background">#FAFAFA</color>
     <color name="background_status_bar">#DBDBDB</color>
+    <color name="light_text">#B7B8BB</color>
 </resources>

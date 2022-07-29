@@ -35,10 +35,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
             android:layout_marginTop="12dp"
+            android:contentDescription="@string/back_arrow"
             android:src="@drawable/ic_baseline_arrow_back"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/back_arrow"
             app:tint="@color/primary" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -55,12 +55,13 @@
 
         <Button
             android:id="@+id/btn_save"
+            style="@style/PurrButton.Primary"
             android:layout_width="145dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginBottom="16dp"
             android:text="@string/save"
-            app:cornerRadius="12dp"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btn_delete"
             app:layout_constraintHorizontal_bias="0.105"
@@ -68,39 +69,40 @@
 
         <Button
             android:id="@+id/btn_delete"
+            style="@style/PurrButton.Secondary"
             android:layout_width="145dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="16dp"
-            android:backgroundTint="@color/secondary"
+
             android:text="@string/delete"
-            app:cornerRadius="12dp"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.822"
             app:layout_constraintStart_toEndOf="@+id/btn_save" />
 
         <EditText
-            android:importantForAutofill="no"
             android:id="@+id/task_title"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:layout_marginTop="16dp"
             android:ems="10"
             android:hint="@string/title"
+            android:importantForAutofill="no"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:importantForAutofill="no"
             android:id="@+id/task_project"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:layout_marginTop="16dp"
             android:ems="10"
             android:hint="@string/project"
+            android:importantForAutofill="no"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.496"
@@ -108,13 +110,13 @@
             app:layout_constraintTop_toBottomOf="@+id/task_title" />
 
         <EditText
-            android:importantForAutofill="no"
             android:id="@+id/task_project3"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:layout_marginTop="144dp"
             android:ems="10"
             android:hint="@string/description"
+            android:importantForAutofill="no"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.496"
@@ -122,13 +124,13 @@
             app:layout_constraintTop_toBottomOf="@+id/task_title" />
 
         <EditText
-            android:importantForAutofill="no"
             android:id="@+id/task_deadline"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:layout_marginTop="16dp"
             android:ems="10"
             android:hint="@string/deadline"
+            android:importantForAutofill="no"
             android:inputType="date"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.496"

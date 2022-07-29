@@ -36,6 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="@string/task_detail"
+            android:textColor="@color/light_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
@@ -66,6 +67,7 @@
 
         <TextView
             android:id="@+id/txt_task_title"
+            style="@style/TitleText.Headline1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -76,6 +78,7 @@
 
         <TextView
             android:id="@+id/txt_description"
+            style="@style/TitleText.Headline2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -93,34 +96,46 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txt_task_title">
 
-            <ImageView
-                android:id="@+id/imageView3"
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardIcon"
+                style="@style/CardRoundedIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:contentDescription="@string/project_icon"
-                android:src="@drawable/ic_baseline_work_24"
+                android:layout_marginStart="2dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:tint="@color/primary" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/project_icon"
+                    android:src="@drawable/ic_baseline_work_24"
+
+                    app:tint="@color/primary" />
+            </com.google.android.material.card.MaterialCardView>
+
 
             <TextView
                 android:id="@+id/txt_project"
+                style="@style/TitleText.SmallHeadline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="16dp"
                 android:text="@string/project"
-                app:layout_constraintStart_toEndOf="@+id/imageView3"
+                app:layout_constraintStart_toEndOf="@+id/cardIcon"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/txt_project_name"
+                style="@style/TitleText.Headline3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView3"
+                app:layout_constraintStart_toEndOf="@+id/cardIcon"
                 app:layout_constraintTop_toTopOf="@+id/txt_project"
                 app:layout_constraintVertical_bias="0.439"
                 tools:text="Snapchat" />
@@ -139,35 +154,46 @@
 
             <TextView
                 android:id="@+id/txt_deadline"
+                style="@style/TitleText.SmallHeadline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="16dp"
                 android:text="@string/deadline"
-                app:layout_constraintStart_toEndOf="@+id/imageView4"
+                app:layout_constraintStart_toEndOf="@+id/cardIcon2"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/txt_project_deadline"
+                style="@style/TitleText.Headline3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView4"
+                app:layout_constraintStart_toEndOf="@+id/cardIcon2"
                 app:layout_constraintTop_toTopOf="@+id/txt_deadline"
                 app:layout_constraintVertical_bias="0.439"
                 tools:text="Mon 7, March" />
 
-            <ImageView
-                android:id="@+id/imageView4"
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardIcon2"
+                style="@style/CardRoundedIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:contentDescription="@string/deadline_icon"
-                android:src="@drawable/ic_baseline_date_range_24"
+                android:layout_marginStart="2dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:tint="@color/secondary" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/project_icon"
+                    android:src="@drawable/ic_baseline_date_range_24"
+
+                    app:tint="@color/secondary" />
+            </com.google.android.material.card.MaterialCardView>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
@@ -185,12 +211,12 @@
 
         <Button
             android:id="@+id/btn_done"
+            style="@style/PurrButton.Primary"
             android:layout_width="145dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginBottom="16dp"
             android:text="@string/done"
-            app:cornerRadius="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btn_in_progress"
             app:layout_constraintHorizontal_bias="0.105"
@@ -198,13 +224,12 @@
 
         <Button
             android:id="@+id/btn_in_progress"
+            style="@style/PurrButton.Secondary"
             android:layout_width="145dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="16dp"
-            android:backgroundTint="@color/secondary"
             android:text="@string/in_progress"
-            app:cornerRadius="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
