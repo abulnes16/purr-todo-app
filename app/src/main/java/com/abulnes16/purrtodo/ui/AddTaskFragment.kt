@@ -35,7 +35,7 @@ class AddTaskFragment : Fragment() {
     }
 
 
-    fun goBack(){
+    private fun goBack(){
         val action = R.id.action_addTaskFragment_to_homeFragment
         findNavController().navigate(action)
     }
