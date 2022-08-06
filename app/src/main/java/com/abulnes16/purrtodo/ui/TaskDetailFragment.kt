@@ -5,9 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.abulnes16.purrtodo.R
+import com.abulnes16.purrtodo.TaskApplication
 import com.abulnes16.purrtodo.databinding.FragmentTaskDetailBinding
+import com.abulnes16.purrtodo.viewmodels.TaskViewModel
+import com.abulnes16.purrtodo.viewmodels.TaskViewModelFactory
 
 
 /**
@@ -18,6 +22,9 @@ import com.abulnes16.purrtodo.databinding.FragmentTaskDetailBinding
 class TaskDetailFragment : Fragment() {
 
     private lateinit var binding: FragmentTaskDetailBinding
+    private val viewModel: TaskViewModel by activityViewModels {
+        TaskViewModelFactory((activity?.application as TaskApplication).database.taskDao())
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

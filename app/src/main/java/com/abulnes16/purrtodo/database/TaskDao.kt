@@ -2,15 +2,16 @@ package com.abulnes16.purrtodo.database
 
 import androidx.room.*
 import com.abulnes16.purrtodo.database.data.Task
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface TaskDao {
 
     @Query("SELECT * FROM tasks")
-    fun getTasks()
+    fun getTasks(): Flow<List<Task>>
 
     @Query("SELECT * FROM tasks WHERE id=:id")
-    fun getTask(id: Int)
+    fun getTask(id: Int): Flow<Task>
 
     @Insert(onConflict = OnConflictStrategy.ABORT)
     suspend fun create(task: Task)
