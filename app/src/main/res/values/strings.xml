@@ -23,4 +23,10 @@
     <string name="back_arrow">Back Arrow</string>
     <string name="project_icon">Project Icon</string>
     <string name="deadline_icon">Deadline icon</string>
+
+    <!--Form validations-->
+    <string name="field_empty">The %1$s can\'t be empty</string>
+    <string name="successful_task">The task was created successfully</string>
+
+
 </resources>

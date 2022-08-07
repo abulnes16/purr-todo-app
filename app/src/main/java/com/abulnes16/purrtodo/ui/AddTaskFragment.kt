@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.marginEnd
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -17,9 +17,8 @@ import com.abulnes16.purrtodo.viewmodels.TaskViewModelFactory
 
 
 /**
- * A simple [Fragment] subclass.
- * Use the [AddTaskFragment.newInstance] factory method to
- * create an instance of this fragment.
+ * Add Task Fragment
+ * Manage the form to create a new task in the application
  */
 class AddTaskFragment : Fragment() {
 
@@ -29,40 +28,16 @@ class AddTaskFragment : Fragment() {
         TaskViewModelFactory((activity?.application as TaskApplication).database.taskDao())
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
+    ): View {
         binding = FragmentAddTaskBinding.inflate(inflater, container, false)
         bind()
 
         return binding.root
     }
 
-
-    private fun goBack() {
-        val action = R.id.action_addTaskFragment_to_homeFragment
-        findNavController().navigate(action)
-    }
-
-    private fun saveTask() {
-        with(binding) {
-            val title = this.txtTaskTitle.text.toString();
-            val description = this.txtDescription.text.toString();
-            val project = this.txtProject.text.toString();
-            val deadline = this.txtDeadline.text.toString();
-            if (isEntryValid(title, description, project, deadline)) {
-                viewModel.createTask(title, project, description, deadline)
-            }
-        }
-    }
 
     private fun bind() {
         binding.apply {
@@ -75,17 +50,63 @@ class AddTaskFragment : Fragment() {
         }
     }
 
-    private fun isEntryValid(
-        title: String,
-        description: String,
-        project: String,
-        deadline: String
-    ): Boolean {
-        if (title.isBlank() || description.isBlank() || project.isBlank() || deadline.isBlank()) {
-            return false
-        }
-        return true
+    private fun goBack() {
+        val action = R.id.action_addTaskFragment_to_homeFragment
+        findNavController().navigate(action)
     }
 
+    private fun saveTask() {
+        with(binding) {
+            val title = this.txtTaskTitle.text.toString();
+            val description = this.txtDescription.text.toString();
+            val project = this.txtProject.text.toString();
+            val deadline = this.txtDeadline.text.toString();
+            if (viewModel.isEntryValid(title, description, project, deadline)) {
+                viewModel.createTask(title, project, description, deadline)
+                clearErrors()
+                Toast.makeText(
+                    context?.applicationContext,
+                    getString(R.string.successful_task),
+                    Toast.LENGTH_SHORT
+                ).show()
+                goBack()
+            } else {
+                manageFormError()
+            }
+        }
+    }
+
+    private fun manageFormError() {
+        binding.apply {
+            if (this.txtTaskTitle.length() == 0) {
+                this.txtTaskTitle.error = formatFieldValidation("task title")
+            }
+
+            if (this.txtProject.length() == 0) {
+                this.txtProject.error = formatFieldValidation("project")
+            }
+
+            if (this.txtDeadline.length() == 0) {
+                this.txtDeadline.error = formatFieldValidation("deadline")
+            }
+
+            if (this.txtDescription.length() == 0) {
+                this.txtDescription.error = formatFieldValidation("description")
+            }
+        }
+    }
+
+    private fun formatFieldValidation(fieldName: String): String {
+        return getString(R.string.field_empty, fieldName)
+    }
+
+    private fun clearErrors() {
+        binding.apply {
+            this.txtTaskTitle.error = null
+            this.txtProject.error = null
+            this.txtDescription.error = null
+            this.txtDeadline.error = null
+        }
+    }
 
 }

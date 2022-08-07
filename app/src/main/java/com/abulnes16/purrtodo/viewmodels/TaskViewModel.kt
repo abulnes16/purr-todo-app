@@ -1,5 +1,6 @@
 package com.abulnes16.purrtodo.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
@@ -32,9 +33,26 @@ class TaskViewModel(private val taskDao: TaskDao) : ViewModel() {
         task: Task
     ) {
         viewModelScope.launch {
-            taskDao.create(task)
+            try {
+                taskDao.create(task)
+            } catch (exception: Exception) {
+                Log.e("[CREATE_TASK]", exception.toString())
+                // TODO: Add notification for failed creation
+            }
         }
 
+    }
+
+    fun isEntryValid(
+        title: String,
+        description: String,
+        project: String,
+        deadline: String
+    ): Boolean {
+        if (title.isBlank() || description.isBlank() || project.isBlank() || deadline.isBlank()) {
+            return false
+        }
+        return true
     }
 
 }
