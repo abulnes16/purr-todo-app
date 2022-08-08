@@ -1,15 +1,20 @@
 package com.abulnes16.purrtodo.viewmodels
 
 import android.util.Log
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.abulnes16.purrtodo.database.TaskDao
 import com.abulnes16.purrtodo.database.data.Task
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import java.lang.IllegalArgumentException
 
 class TaskViewModel(private val taskDao: TaskDao) : ViewModel() {
+
+    private var _error: MutableLiveData<Boolean> = MutableLiveData(false)
+    val error: LiveData<Boolean>
+        get() = _error
+
+    fun allTodos(): Flow<List<Task>> = taskDao.getTasks()
 
     fun createTask(
         title: String,
@@ -21,8 +26,8 @@ class TaskViewModel(private val taskDao: TaskDao) : ViewModel() {
             0,
             title,
             project,
-            deadline,
             description,
+            deadline,
             isDone = false,
             isInProgress = false
         )
@@ -35,9 +40,10 @@ class TaskViewModel(private val taskDao: TaskDao) : ViewModel() {
         viewModelScope.launch {
             try {
                 taskDao.create(task)
+                _error.value = false
             } catch (exception: Exception) {
                 Log.e("[CREATE_TASK]", exception.toString())
-                // TODO: Add notification for failed creation
+                _error.value = true
             }
         }
 

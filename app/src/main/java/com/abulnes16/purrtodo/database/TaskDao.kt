@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface TaskDao {
 
-    @Query("SELECT * FROM tasks")
+    @Query("SELECT * FROM tasks WHERE is_done != 1")
     fun getTasks(): Flow<List<Task>>
 
     @Query("SELECT * FROM tasks WHERE id=:id")

@@ -46,6 +46,7 @@
         <action
             android:id="@+id/action_taskDetailFragment_to_homeFragment"
             app:destination="@id/homeFragment"
-            app:popUpTo="@id/homeFragment" />
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="false" />
     </fragment>
 </navigation>

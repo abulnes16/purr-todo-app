@@ -34,8 +34,20 @@ class AddTaskFragment : Fragment() {
     ): View {
         binding = FragmentAddTaskBinding.inflate(inflater, container, false)
         bind()
-
+        setupListeners()
         return binding.root
+    }
+
+    private fun setupListeners() {
+        viewModel.error.observe(viewLifecycleOwner) { hasError ->
+            if (hasError) {
+                Toast.makeText(
+                    context?.applicationContext,
+                    getString(R.string.failed_task),
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        }
     }
 
 
