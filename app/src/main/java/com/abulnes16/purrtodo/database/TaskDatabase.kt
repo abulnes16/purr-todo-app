@@ -6,6 +6,10 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.abulnes16.purrtodo.database.data.Task
 
+/**
+ * [TaskDatabase]
+ * Creates an instance of the database to hold the user tasks
+ */
 @Database(entities = [Task::class], version = 1)
 abstract class TaskDatabase : RoomDatabase() {
     abstract fun taskDao(): TaskDao

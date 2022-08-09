@@ -4,6 +4,10 @@ import androidx.room.*
 import com.abulnes16.purrtodo.database.data.Task
 import kotlinx.coroutines.flow.Flow
 
+/**
+ * [TaskDao]
+ * Data Access Object for the tasks in the database
+ */
 @Dao
 interface TaskDao {
 

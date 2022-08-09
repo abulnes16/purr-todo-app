@@ -4,6 +4,10 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+/**
+ * [Task]
+ * Data class for representing the user tasks
+ */
 @Entity(tableName = "tasks")
 data class Task(
     @PrimaryKey(autoGenerate = true)

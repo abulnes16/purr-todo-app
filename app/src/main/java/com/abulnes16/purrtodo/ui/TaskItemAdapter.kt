@@ -11,6 +11,11 @@ import com.abulnes16.purrtodo.R
 import com.abulnes16.purrtodo.database.data.Task
 import com.abulnes16.purrtodo.databinding.TaskListItemBinding
 
+/**
+ * [TaskItemAdapter]
+ * Adapts the information of the task in the database and
+ * shows them in the lists on the [HomeFragment]
+ */
 class TaskItemAdapter(private val onItemCliked: (Task) -> Unit) :
     ListAdapter<Task, TaskItemAdapter.TaskItemHolder>(DiffCallback) {
 

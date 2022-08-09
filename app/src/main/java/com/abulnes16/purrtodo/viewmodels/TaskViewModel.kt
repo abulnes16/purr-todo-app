@@ -8,6 +8,10 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import java.lang.IllegalArgumentException
 
+/**
+ * [TaskViewModel]
+ * Manage all the actions of the tasks in the app
+ */
 class TaskViewModel(private val taskDao: TaskDao) : ViewModel() {
 
     private var _error: MutableLiveData<Boolean> = MutableLiveData(false)
@@ -95,6 +99,10 @@ class TaskViewModel(private val taskDao: TaskDao) : ViewModel() {
 }
 
 
+/**
+ * [TaskViewModelFactory]
+ * Creates an instance of the TaskViewModel if is assignable
+ */
 class TaskViewModelFactory(private val taskDao: TaskDao) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(TaskViewModel::class.java)) {
