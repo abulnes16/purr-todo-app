@@ -13,6 +13,9 @@ interface TaskDao {
     @Query("SELECT * FROM tasks WHERE id=:id")
     fun getTask(id: Int): Flow<Task>
 
+    @Query("SELECT * FROM tasks WHERE is_in_progress = 1")
+    fun getInProgressTasks(): Flow<List<Task>>
+
     @Insert(onConflict = OnConflictStrategy.ABORT)
     suspend fun create(task: Task)
 

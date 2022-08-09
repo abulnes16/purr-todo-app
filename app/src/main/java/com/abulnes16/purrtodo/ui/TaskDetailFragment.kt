@@ -7,8 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.abulnes16.purrtodo.R
 import com.abulnes16.purrtodo.TaskApplication
+import com.abulnes16.purrtodo.database.data.Task
 import com.abulnes16.purrtodo.databinding.FragmentTaskDetailBinding
 import com.abulnes16.purrtodo.viewmodels.TaskViewModel
 import com.abulnes16.purrtodo.viewmodels.TaskViewModelFactory
@@ -22,9 +24,12 @@ import com.abulnes16.purrtodo.viewmodels.TaskViewModelFactory
 class TaskDetailFragment : Fragment() {
 
     private lateinit var binding: FragmentTaskDetailBinding
+    private val arguments: TaskDetailFragmentArgs by navArgs()
     private val viewModel: TaskViewModel by activityViewModels {
         TaskViewModelFactory((activity?.application as TaskApplication).database.taskDao())
     }
+
+    private lateinit var task: Task
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +48,23 @@ class TaskDetailFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val taskId = arguments.taskId
+        viewModel.retrieveTask(taskId).observe(this.viewLifecycleOwner) { selectedTask ->
+            task = selectedTask
+            bind(selectedTask)
+        }
+    }
+
+    private fun bind(task: Task) {
+        binding.apply {
+            this.txtTaskTitle.text = task.title
+            this.txtProjectName.text = task.project
+            this.txtProjectDeadline.text = task.deadline
+            this.txtProjectDescription.text = task.description
+        }
+    }
 
     private fun goBack() {
         val action = R.id.action_taskDetailFragment_to_homeFragment
@@ -50,7 +72,7 @@ class TaskDetailFragment : Fragment() {
     }
 
     private fun goToEdit() {
-        val action = R.id.action_taskDetailFragment_to_addTaskFragment
+        val action = TaskDetailFragmentDirections.actionTaskDetailFragmentToAddTaskFragment(task.id)
         findNavController().navigate(action)
     }
 

@@ -58,12 +58,18 @@ class AddTaskFragment : Fragment() {
             this.btnDelete.visibility = View.GONE
             if (arguments.taskId != 0) {
                 this.btnDelete.visibility = View.VISIBLE
+                this.txtTaskAdd.text = getString(R.string.edit_task)
             }
         }
     }
 
     private fun goBack() {
-        val action = R.id.action_addTaskFragment_to_homeFragment
+        val action = if (arguments.taskId != 0) {
+            AddTaskFragmentDirections.actionAddTaskFragmentToTaskDetailFragment(arguments.taskId)
+        } else {
+            AddTaskFragmentDirections.actionAddTaskFragmentToHomeFragment()
+        }
+
         findNavController().navigate(action)
     }
 

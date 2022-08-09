@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.abulnes16.purrtodo.R
 import com.abulnes16.purrtodo.TaskApplication
+import com.abulnes16.purrtodo.database.data.Task
 import com.abulnes16.purrtodo.databinding.FragmentHomeBinding
 import com.abulnes16.purrtodo.viewmodels.TaskViewModel
 import com.abulnes16.purrtodo.viewmodels.TaskViewModelFactory
@@ -32,13 +33,13 @@ class HomeFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         bind()
         return binding.root
@@ -55,20 +56,33 @@ class HomeFragment : Fragment() {
     }
 
     private fun bindTodosAdapter() {
-        val taskAdapter = TaskItemAdapter {
+        val onClick = { it: Task ->
             val action =
                 HomeFragmentDirections.actionHomeFragmentToTaskDetailFragment(taskId = it.id)
             findNavController().navigate(action)
         }
-        binding.recyclerTodos.adapter = taskAdapter
-        binding.recyclerTodos.layoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.HORIZONTAL)
+        val taskAdapter = TaskItemAdapter(onClick)
+        val inProgressAdapter = TaskItemAdapter(onClick)
+        with(binding) {
+
+            this.recyclerTodos.adapter = taskAdapter
+            this.recyclerTodos.layoutManager =
+                StaggeredGridLayoutManager(1, LinearLayoutManager.HORIZONTAL)
+            this.recyclerInProgress.adapter = inProgressAdapter
+            this.recyclerInProgress.layoutManager = LinearLayoutManager(context)
+
+        }
         lifecycle.coroutineScope.launch {
             viewModel.allTodos().collect() {
                 taskAdapter.submitList(it)
                 binding.txtNumTodos.text = it.size.toString()
             }
-        }
 
+            viewModel.inProgressTasks().collect() {
+                inProgressAdapter.submitList(it)
+                binding.txtInProgressNum.text = it.size.toString()
+            }
+        }
 
 
     }

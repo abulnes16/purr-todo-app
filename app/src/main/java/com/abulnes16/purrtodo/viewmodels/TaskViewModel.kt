@@ -16,6 +16,8 @@ class TaskViewModel(private val taskDao: TaskDao) : ViewModel() {
 
     fun allTodos(): Flow<List<Task>> = taskDao.getTasks()
 
+    fun inProgressTasks(): Flow<List<Task>> = taskDao.getInProgressTasks()
+
     fun createTask(
         title: String,
         project: String,
@@ -32,6 +34,10 @@ class TaskViewModel(private val taskDao: TaskDao) : ViewModel() {
             isInProgress = false
         )
         createTask(newTask)
+    }
+
+    fun retrieveTask(id: Int): LiveData<Task> {
+        return taskDao.getTask(id).asLiveData()
     }
 
     private fun createTask(
