@@ -36,6 +36,20 @@ class TaskViewModel(private val taskDao: TaskDao) : ViewModel() {
         createTask(newTask)
     }
 
+    fun markInProgress(task: Task) {
+        if (!task.isInProgress && !task.isDone) {
+            val inProgressTask = task.copy(isInProgress = true)
+            updateTask(inProgressTask)
+        }
+    }
+
+    fun markDone(task: Task){
+        if(!task.isDone){
+            val doneTask = task.copy(isDone = true)
+            updateTask(doneTask)
+        }
+    }
+
     fun retrieveTask(id: Int): LiveData<Task> {
         return taskDao.getTask(id).asLiveData()
     }
@@ -53,6 +67,17 @@ class TaskViewModel(private val taskDao: TaskDao) : ViewModel() {
             }
         }
 
+    }
+
+    private fun updateTask(task: Task) {
+        viewModelScope.launch {
+            try {
+                taskDao.update(task)
+            } catch (exception: Exception) {
+                Log.e("[UPDATE TASK]:", exception.toString())
+                _error.value = true
+            }
+        }
     }
 
     fun isEntryValid(

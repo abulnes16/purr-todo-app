@@ -69,7 +69,8 @@ class HomeFragment : Fragment() {
             this.recyclerTodos.layoutManager =
                 StaggeredGridLayoutManager(1, LinearLayoutManager.HORIZONTAL)
             this.recyclerInProgress.adapter = inProgressAdapter
-            this.recyclerInProgress.layoutManager = LinearLayoutManager(context)
+            this.recyclerInProgress.layoutManager =
+                StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
 
         }
         lifecycle.coroutineScope.launch {
@@ -77,13 +78,14 @@ class HomeFragment : Fragment() {
                 taskAdapter.submitList(it)
                 binding.txtNumTodos.text = it.size.toString()
             }
+        }
 
+        lifecycle.coroutineScope.launch {
             viewModel.inProgressTasks().collect() {
                 inProgressAdapter.submitList(it)
                 binding.txtInProgressNum.text = it.size.toString()
             }
         }
-
 
     }
 

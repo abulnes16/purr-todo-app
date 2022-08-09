@@ -7,13 +7,13 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface TaskDao {
 
-    @Query("SELECT * FROM tasks WHERE is_done != 1")
+    @Query("SELECT * FROM tasks WHERE is_done != 1 AND is_in_progress != 1")
     fun getTasks(): Flow<List<Task>>
 
     @Query("SELECT * FROM tasks WHERE id=:id")
     fun getTask(id: Int): Flow<Task>
 
-    @Query("SELECT * FROM tasks WHERE is_in_progress = 1")
+    @Query("SELECT * FROM tasks WHERE is_in_progress = 1 AND is_done !=1")
     fun getInProgressTasks(): Flow<List<Task>>
 
     @Insert(onConflict = OnConflictStrategy.ABORT)

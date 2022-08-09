@@ -63,6 +63,18 @@ class TaskDetailFragment : Fragment() {
             this.txtProjectName.text = task.project
             this.txtProjectDeadline.text = task.deadline
             this.txtProjectDescription.text = task.description
+            if (!task.isInProgress) {
+                this.btnInProgress.setOnClickListener { markAsInProgress() }
+            } else {
+                this.btnInProgress.visibility = View.GONE
+            }
+
+            if (!task.isDone) {
+                this.btnDone.setOnClickListener { markAsDone() }
+            } else {
+                this.btnDone.visibility = View.GONE
+                this.btnInProgress.visibility = View.GONE
+            }
         }
     }
 
@@ -74,6 +86,14 @@ class TaskDetailFragment : Fragment() {
     private fun goToEdit() {
         val action = TaskDetailFragmentDirections.actionTaskDetailFragmentToAddTaskFragment(task.id)
         findNavController().navigate(action)
+    }
+
+    private fun markAsInProgress() {
+        viewModel.markInProgress(task)
+    }
+
+    private fun markAsDone() {
+        viewModel.markDone(task)
     }
 
 
