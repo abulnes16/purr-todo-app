@@ -28,6 +28,6 @@
     <string name="field_empty">The %1$s can\'t be empty</string>
     <string name="successful_task">The task was created successfully</string>
     <string name="failed_task">We couldn\'t create the task, please try again</string>
-
+    <string name="successful_done_task">Congratulations on finishing the task</string>
 
 </resources>

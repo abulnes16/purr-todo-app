@@ -17,7 +17,7 @@ import com.abulnes16.purrtodo.viewmodels.TaskViewModelFactory
 
 
 /**
- * Add Task Fragment
+ * [AddTaskFragment]
  * Manage the form to create a new task in the application
  */
 class AddTaskFragment : Fragment() {
@@ -64,21 +64,15 @@ class AddTaskFragment : Fragment() {
     }
 
     private fun goBack() {
-        val action = if (arguments.taskId != 0) {
-            AddTaskFragmentDirections.actionAddTaskFragmentToTaskDetailFragment(arguments.taskId)
-        } else {
-            AddTaskFragmentDirections.actionAddTaskFragmentToHomeFragment()
-        }
-
-        findNavController().navigate(action)
+        findNavController().popBackStack()
     }
 
     private fun saveTask() {
         with(binding) {
-            val title = this.txtTaskTitle.text.toString();
-            val description = this.txtDescription.text.toString();
-            val project = this.txtProject.text.toString();
-            val deadline = this.txtDeadline.text.toString();
+            val title = this.txtTaskTitle.text.toString()
+            val description = this.txtDescription.text.toString()
+            val project = this.txtProject.text.toString()
+            val deadline = this.txtDeadline.text.toString()
             if (viewModel.isEntryValid(title, description, project, deadline)) {
                 viewModel.createTask(title, project, description, deadline)
                 clearErrors()

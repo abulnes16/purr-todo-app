@@ -220,7 +220,7 @@
             android:text="@string/done"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btn_in_progress"
-            app:layout_constraintHorizontal_bias="0.105"
+            app:layout_constraintHorizontal_bias="0.383"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
@@ -228,7 +228,7 @@
             style="@style/PurrButton.Secondary"
             android:layout_width="140dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="44dp"
+            android:layout_marginEnd="48dp"
             android:layout_marginBottom="16dp"
             android:text="@string/in_progress"
             app:layout_constraintBottom_toBottomOf="parent"

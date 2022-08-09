@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -17,9 +18,9 @@ import com.abulnes16.purrtodo.viewmodels.TaskViewModelFactory
 
 
 /**
- * A simple [Fragment] subclass.
- * Use the [TaskDetailFragment.newInstance] factory method to
- * create an instance of this fragment.
+ * [TaskDetailFragment]
+ * Show the information of a task and allow the user
+ * to mark the task as done or in progress.
  */
 class TaskDetailFragment : Fragment() {
 
@@ -39,7 +40,7 @@ class TaskDetailFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentTaskDetailBinding.inflate(inflater, container, false)
 
         binding.btnGoBack.setOnClickListener { goBack() }
@@ -74,13 +75,13 @@ class TaskDetailFragment : Fragment() {
             } else {
                 this.btnDone.visibility = View.GONE
                 this.btnInProgress.visibility = View.GONE
+                this.btnEdit.visibility = View.GONE
             }
         }
     }
 
     private fun goBack() {
-        val action = R.id.action_taskDetailFragment_to_homeFragment
-        findNavController().navigate(action)
+        findNavController().popBackStack()
     }
 
     private fun goToEdit() {
@@ -94,6 +95,12 @@ class TaskDetailFragment : Fragment() {
 
     private fun markAsDone() {
         viewModel.markDone(task)
+        Toast.makeText(
+            context,
+            getString(R.string.successful_done_task),
+            Toast.LENGTH_LONG
+        ).show()
+        goBack()
     }
 
 
