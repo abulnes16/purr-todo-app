@@ -1,5 +1,6 @@
 package com.abulnes16.purrtodo.ui
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -18,6 +19,7 @@ import com.abulnes16.purrtodo.viewmodels.TaskViewModel
 import com.abulnes16.purrtodo.viewmodels.TaskViewModelFactory
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.w3c.dom.Text
+import java.util.*
 
 
 /**
@@ -66,6 +68,7 @@ class AddTaskFragment : Fragment() {
         binding.apply {
             this.btnGoBackAddTask.setOnClickListener { goBack() }
             this.btnSave.setOnClickListener { saveTask() }
+            this.txtDeadline.setOnClickListener { showDateDialog() }
             this.btnDelete.visibility = View.GONE
         }
     }
@@ -75,6 +78,7 @@ class AddTaskFragment : Fragment() {
             this.btnGoBackAddTask.setOnClickListener { goBack() }
             this.btnSave.setOnClickListener { editTask() }
             this.btnDelete.setOnClickListener { showConfirmationDialog() }
+            this.txtDeadline.setOnClickListener { showDateDialog() }
             this.txtTaskAdd.text = getString(R.string.edit_task)
             this.btnDelete.visibility = View.VISIBLE
             this.txtTaskTitle.setText(task.title, TextView.BufferType.SPANNABLE)
@@ -177,6 +181,33 @@ class AddTaskFragment : Fragment() {
             message,
             Toast.LENGTH_SHORT
         ).show()
+    }
+
+    private fun showDateDialog() {
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+        val datePickerDialog = DatePickerDialog(
+            requireContext(), { _, yearPicked, monthOfYear, dayOfMonth ->
+                calendar.set(Calendar.MONTH, monthOfYear)
+                val date = "$dayOfMonth ${
+                    calendar.getDisplayName(
+                        Calendar.MONTH,
+                        Calendar.SHORT,
+                        Locale.getDefault()
+                    )
+                }, $yearPicked"
+                binding.txtDeadline.setText(date)
+            },
+            year,
+            month,
+            day
+        )
+
+        datePickerDialog.show()
+
     }
 
 }
