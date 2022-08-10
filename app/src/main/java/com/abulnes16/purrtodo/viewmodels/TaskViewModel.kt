@@ -47,11 +47,25 @@ class TaskViewModel(private val taskDao: TaskDao) : ViewModel() {
         }
     }
 
-    fun markDone(task: Task){
-        if(!task.isDone){
+    fun markDone(task: Task) {
+        if (!task.isDone) {
             val doneTask = task.copy(isDone = true)
             updateTask(doneTask)
         }
+    }
+
+    fun edit(title: String, project: String, deadline: String, description: String, task: Task) {
+        val updatedTask = task.copy(
+            title = title,
+            deadline = deadline,
+            description = description,
+            project = project
+        )
+        updateTask(updatedTask)
+    }
+
+    fun delete(task: Task) {
+        deleteTask(task)
     }
 
     fun retrieveTask(id: Int): LiveData<Task> {
@@ -79,6 +93,17 @@ class TaskViewModel(private val taskDao: TaskDao) : ViewModel() {
                 taskDao.update(task)
             } catch (exception: Exception) {
                 Log.e("[UPDATE TASK]:", exception.toString())
+                _error.value = true
+            }
+        }
+    }
+
+    private fun deleteTask(task: Task) {
+        viewModelScope.launch {
+            try {
+                taskDao.delete(task)
+            } catch (exception: Exception) {
+                Log.e("[DELETE TASK]:", exception.toString())
                 _error.value = true
             }
         }

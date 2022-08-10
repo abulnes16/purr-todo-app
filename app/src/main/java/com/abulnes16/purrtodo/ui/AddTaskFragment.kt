@@ -5,15 +5,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.abulnes16.purrtodo.R
 import com.abulnes16.purrtodo.TaskApplication
+import com.abulnes16.purrtodo.database.data.Task
 import com.abulnes16.purrtodo.databinding.FragmentAddTaskBinding
 import com.abulnes16.purrtodo.viewmodels.TaskViewModel
 import com.abulnes16.purrtodo.viewmodels.TaskViewModelFactory
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import org.w3c.dom.Text
 
 
 /**
@@ -23,6 +27,7 @@ import com.abulnes16.purrtodo.viewmodels.TaskViewModelFactory
 class AddTaskFragment : Fragment() {
 
     private lateinit var binding: FragmentAddTaskBinding
+    private lateinit var task: Task
     private val arguments: AddTaskFragmentArgs by navArgs()
     private val viewModel: TaskViewModel by activityViewModels {
         TaskViewModelFactory((activity?.application as TaskApplication).database.taskDao())
@@ -33,7 +38,16 @@ class AddTaskFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentAddTaskBinding.inflate(inflater, container, false)
-        bind()
+
+        val taskId = arguments.taskId
+        if (taskId != 0) {
+            viewModel.retrieveTask(taskId).observe(this.viewLifecycleOwner) {
+                task = it
+                bind(it)
+            }
+        } else {
+            bind()
+        }
         setupListeners()
         return binding.root
     }
@@ -41,11 +55,8 @@ class AddTaskFragment : Fragment() {
     private fun setupListeners() {
         viewModel.error.observe(viewLifecycleOwner) { hasError ->
             if (hasError) {
-                Toast.makeText(
-                    context?.applicationContext,
-                    getString(R.string.failed_task),
-                    Toast.LENGTH_LONG
-                ).show()
+                val message = if (arguments.taskId != 0) "update" else "create"
+                showToast(getString(R.string.failed_task, message))
             }
         }
     }
@@ -56,10 +67,20 @@ class AddTaskFragment : Fragment() {
             this.btnGoBackAddTask.setOnClickListener { goBack() }
             this.btnSave.setOnClickListener { saveTask() }
             this.btnDelete.visibility = View.GONE
-            if (arguments.taskId != 0) {
-                this.btnDelete.visibility = View.VISIBLE
-                this.txtTaskAdd.text = getString(R.string.edit_task)
-            }
+        }
+    }
+
+    private fun bind(task: Task) {
+        binding.apply {
+            this.btnGoBackAddTask.setOnClickListener { goBack() }
+            this.btnSave.setOnClickListener { editTask() }
+            this.btnDelete.setOnClickListener { showConfirmationDialog() }
+            this.txtTaskAdd.text = getString(R.string.edit_task)
+            this.btnDelete.visibility = View.VISIBLE
+            this.txtTaskTitle.setText(task.title, TextView.BufferType.SPANNABLE)
+            this.txtProject.setText(task.project, TextView.BufferType.SPANNABLE)
+            this.txtDeadline.setText(task.deadline, TextView.BufferType.SPANNABLE)
+            this.txtDescription.setText(task.description, TextView.BufferType.SPANNABLE)
         }
     }
 
@@ -76,11 +97,40 @@ class AddTaskFragment : Fragment() {
             if (viewModel.isEntryValid(title, description, project, deadline)) {
                 viewModel.createTask(title, project, description, deadline)
                 clearErrors()
-                Toast.makeText(
-                    context?.applicationContext,
-                    getString(R.string.successful_task),
-                    Toast.LENGTH_SHORT
-                ).show()
+                showToast(getString(R.string.successful_task))
+                goBack()
+            } else {
+                manageFormError()
+            }
+        }
+    }
+
+    private fun showConfirmationDialog() {
+        MaterialAlertDialogBuilder(requireContext(), R.style.RoundShapeTheme)
+            .setTitle(getString(R.string.delete_title))
+            .setMessage(getString(R.string.delete_message))
+            .setPositiveButton(getString(R.string.yes)) { _, _ ->
+                deleteTask()
+            }.setNegativeButton(getString(R.string.no)) { _, _ ->
+            }
+            .show()
+    }
+
+    private fun deleteTask() {
+        viewModel.delete(task)
+        findNavController().navigate(R.id.action_addTaskFragment_to_homeFragment)
+    }
+
+    private fun editTask() {
+        with(binding) {
+            val title = this.txtTaskTitle.text.toString()
+            val description = this.txtDescription.text.toString()
+            val project = this.txtProject.text.toString()
+            val deadline = this.txtDeadline.text.toString()
+            if (viewModel.isEntryValid(title, description, project, deadline)) {
+                viewModel.edit(title, project, deadline, description, task)
+                clearErrors()
+                showToast(getString(R.string.updated_successful_task))
                 goBack()
             } else {
                 manageFormError()
@@ -119,6 +169,14 @@ class AddTaskFragment : Fragment() {
             this.txtDescription.error = null
             this.txtDeadline.error = null
         }
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(
+            context?.applicationContext,
+            message,
+            Toast.LENGTH_SHORT
+        ).show()
     }
 
 }
