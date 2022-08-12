@@ -185,9 +185,18 @@ class AddTaskFragment : Fragment() {
 
     private fun showDateDialog() {
         val calendar = Calendar.getInstance()
-        val year = calendar.get(Calendar.YEAR)
-        val month = calendar.get(Calendar.MONTH)
-        val day = calendar.get(Calendar.DAY_OF_MONTH)
+        var year = calendar.get(Calendar.YEAR)
+        var month = calendar.get(Calendar.MONTH)
+        var day = calendar.get(Calendar.DAY_OF_MONTH)
+
+        // If we are going to edit the task we want that the day of the date picker
+        // is the date of the deadline of the task
+        if (arguments.taskId != 0) {
+            val (taskDay, taskMonth, taskYear) = viewModel.retrieveTimeFromDeadline(task)
+            year = taskYear
+            month = taskMonth
+            day = taskDay
+        }
 
         val datePickerDialog = DatePickerDialog(
             requireContext(), { _, yearPicked, monthOfYear, dayOfMonth ->
@@ -205,7 +214,7 @@ class AddTaskFragment : Fragment() {
             month,
             day
         )
-
+        datePickerDialog.datePicker.minDate = calendar.timeInMillis
         datePickerDialog.show()
 
     }

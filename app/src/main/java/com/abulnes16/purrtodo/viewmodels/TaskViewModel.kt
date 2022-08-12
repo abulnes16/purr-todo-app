@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.*
 import com.abulnes16.purrtodo.database.TaskDao
 import com.abulnes16.purrtodo.database.data.Task
+import com.abulnes16.purrtodo.utils.DataTransformationUtil
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import java.lang.IllegalArgumentException
@@ -119,6 +120,14 @@ class TaskViewModel(private val taskDao: TaskDao) : ViewModel() {
             return false
         }
         return true
+    }
+
+    fun retrieveTimeFromDeadline(task: Task): Triple<Int, Int, Int> {
+        val datePieces = task.deadline.split(",", " ")
+        val day = datePieces[0].toInt()
+        val month = DataTransformationUtil.getMonthFromString(datePieces[1])
+        val year = datePieces[3].toInt()
+        return Triple(day, month, year)
     }
 
 }
