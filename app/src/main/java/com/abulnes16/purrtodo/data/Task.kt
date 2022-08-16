@@ -1,4 +1,4 @@
-package com.abulnes16.purrtodo.database.data
+package com.abulnes16.purrtodo.data
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

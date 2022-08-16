@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.abulnes16.purrtodo.R
 import com.abulnes16.purrtodo.TaskApplication
-import com.abulnes16.purrtodo.database.data.Task
+import com.abulnes16.purrtodo.data.Task
 import com.abulnes16.purrtodo.databinding.FragmentTaskDetailBinding
 import com.abulnes16.purrtodo.viewmodels.TaskViewModel
 import com.abulnes16.purrtodo.viewmodels.TaskViewModelFactory
@@ -29,13 +29,8 @@ class TaskDetailFragment : Fragment() {
     private val viewModel: TaskViewModel by activityViewModels {
         TaskViewModelFactory((activity?.application as TaskApplication).database.taskDao())
     }
-
     private lateinit var task: Task
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

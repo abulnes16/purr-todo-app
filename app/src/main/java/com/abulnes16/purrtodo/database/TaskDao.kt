@@ -1,7 +1,7 @@
 package com.abulnes16.purrtodo.database
 
 import androidx.room.*
-import com.abulnes16.purrtodo.database.data.Task
+import com.abulnes16.purrtodo.data.Task
 import kotlinx.coroutines.flow.Flow
 
 /**

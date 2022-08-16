@@ -56,12 +56,13 @@
         <Button
             android:id="@+id/btn_save"
             style="@style/PurrButton.Primary"
-            android:layout_width="140dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="44dp"
 
             android:layout_marginEnd="4dp"
             android:layout_marginBottom="16dp"
+            android:minWidth="120dp"
             android:text="@string/save"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -72,10 +73,11 @@
         <Button
             android:id="@+id/btn_delete"
             style="@style/PurrButton.Secondary"
-            android:layout_width="140dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="48dp"
             android:layout_marginBottom="16dp"
+            android:minWidth="120dp"
             android:minHeight="55dip"
             android:text="@string/delete"
             android:visibility="visible"

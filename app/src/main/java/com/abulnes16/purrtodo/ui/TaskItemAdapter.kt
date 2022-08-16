@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.abulnes16.purrtodo.R
-import com.abulnes16.purrtodo.database.data.Task
+import com.abulnes16.purrtodo.data.Task
 import com.abulnes16.purrtodo.databinding.TaskListItemBinding
 
 /**

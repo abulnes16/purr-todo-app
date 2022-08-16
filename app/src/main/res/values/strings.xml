@@ -38,6 +38,9 @@
     <string name="no">No</string>
     <string name="profile">Profile</string>
     <string name="name">Name</string>
-    <string name="purr_todo_v">Purr Todo v. %1$s </string>
+    <string name="app_version">Purr Todo v. %1$s </string>
+    <string name="preferences_save">The preferences were saved</string>
+    <string name="photos_permission_not_granted">"We can't change the profile picture if you don't grant the permission :(</string>
+    <string name="failed_open_gallery">"We couldn't open the gallery, please try again"</string>
 
 </resources>

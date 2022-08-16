@@ -3,7 +3,7 @@ package com.abulnes16.purrtodo.viewmodels
 import android.util.Log
 import androidx.lifecycle.*
 import com.abulnes16.purrtodo.database.TaskDao
-import com.abulnes16.purrtodo.database.data.Task
+import com.abulnes16.purrtodo.data.Task
 import com.abulnes16.purrtodo.utils.DataTransformationUtil
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch

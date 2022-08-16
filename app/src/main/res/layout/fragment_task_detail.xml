@@ -212,11 +212,12 @@
         <Button
             android:id="@+id/btn_done"
             style="@style/PurrButton.Primary"
-            android:layout_width="140dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="44dp"
             android:layout_marginEnd="4dp"
             android:layout_marginBottom="16dp"
+            android:minWidth="120dp"
             android:text="@string/done"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btn_in_progress"
@@ -226,10 +227,11 @@
         <Button
             android:id="@+id/btn_in_progress"
             style="@style/PurrButton.Secondary"
-            android:layout_width="140dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="48dp"
             android:layout_marginBottom="16dp"
+            android:minWidth="120dp"
             android:text="@string/in_progress"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />

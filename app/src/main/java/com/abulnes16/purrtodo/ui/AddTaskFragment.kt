@@ -13,12 +13,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.abulnes16.purrtodo.R
 import com.abulnes16.purrtodo.TaskApplication
-import com.abulnes16.purrtodo.database.data.Task
+import com.abulnes16.purrtodo.data.Task
 import com.abulnes16.purrtodo.databinding.FragmentAddTaskBinding
 import com.abulnes16.purrtodo.viewmodels.TaskViewModel
 import com.abulnes16.purrtodo.viewmodels.TaskViewModelFactory
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import org.w3c.dom.Text
 import java.util.*
 
 
