@@ -28,6 +28,7 @@ import com.abulnes16.purrtodo.BuildConfig
 import com.abulnes16.purrtodo.R
 import com.abulnes16.purrtodo.data.ProfileDataStore
 import com.abulnes16.purrtodo.databinding.FragmentUserProfileBinding
+import com.abulnes16.purrtodo.utils.DataTransformationUtil
 import kotlinx.coroutines.launch
 
 
@@ -143,6 +144,7 @@ class UserProfileFragment : Fragment() {
     }
 
     private fun saveUserPreferences() {
+        DataTransformationUtil.hideKeyboard(activity)
         with(binding) {
             val userProfile = imageUri?.toString() ?: ""
             val userName = this.txtUserName.text.toString()

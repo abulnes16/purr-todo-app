@@ -1,11 +1,13 @@
 package com.abulnes16.purrtodo.ui
 
 import android.app.DatePickerDialog
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
@@ -15,6 +17,7 @@ import com.abulnes16.purrtodo.R
 import com.abulnes16.purrtodo.TaskApplication
 import com.abulnes16.purrtodo.data.Task
 import com.abulnes16.purrtodo.databinding.FragmentAddTaskBinding
+import com.abulnes16.purrtodo.utils.DataTransformationUtil
 import com.abulnes16.purrtodo.viewmodels.TaskViewModel
 import com.abulnes16.purrtodo.viewmodels.TaskViewModelFactory
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -52,6 +55,7 @@ class AddTaskFragment : Fragment() {
         setupListeners()
         return binding.root
     }
+
 
     private fun setupListeners() {
         viewModel.error.observe(viewLifecycleOwner) { hasError ->
@@ -92,6 +96,7 @@ class AddTaskFragment : Fragment() {
     }
 
     private fun saveTask() {
+        DataTransformationUtil.hideKeyboard(activity)
         with(binding) {
             val title = this.txtTaskTitle.text.toString()
             val description = this.txtDescription.text.toString()
@@ -125,6 +130,7 @@ class AddTaskFragment : Fragment() {
     }
 
     private fun editTask() {
+        DataTransformationUtil.hideKeyboard(activity)
         with(binding) {
             val title = this.txtTaskTitle.text.toString()
             val description = this.txtDescription.text.toString()
@@ -183,6 +189,7 @@ class AddTaskFragment : Fragment() {
     }
 
     private fun showDateDialog() {
+        DataTransformationUtil.hideKeyboard(activity)
         val calendar = Calendar.getInstance()
         var year = calendar.get(Calendar.YEAR)
         var month = calendar.get(Calendar.MONTH)
