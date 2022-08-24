@@ -19,7 +19,22 @@ This app is inspired in the design of
 the [PurrWeb UX/UI Studio To-Do List App](https://dribbble.com/shots/18226700-To-Do-List-App) on
 Dribble
 
-Preview:
-![Home Page](/app/src/main/assets/home.png)
-![Detail Page](/app/src/main/assets/home.png)
-![Profile Page](/app/src/main/assets/home.png)
+---
+
+<br>
+
+## Preview
+
+<br>
+<img src="app/src/main/assets/home.png" width="300"/>
+<img src="app/src/main/assets/detail.png" width="300"/>
+<img src="app/src/main/assets/profile.png" width="300"/>
+<img src="app/src/main/assets/edit.png" width="300"/>
+
+---
+
+<br>
+
+## Feedback
+
+If you have any feedback please let me know at [@abulnes16](https://twitter.com/abulnes16) :D
