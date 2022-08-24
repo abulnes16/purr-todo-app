@@ -21,15 +21,26 @@ Dribble
 
 ---
 
-<br>
 
 ## Preview
 
 <br>
-<img src="app/src/main/assets/home.png" width="300"/>
-<img src="app/src/main/assets/detail.png" width="300"/>
-<img src="app/src/main/assets/profile.png" width="300"/>
-<img src="app/src/main/assets/edit.png" width="300"/>
+<table>
+<tr>
+  <td>
+  <img src="app/src/main/assets/home.png" width="300"/>
+  </td>
+  <td>
+ <img src="app/src/main/assets/detail.png" width="300"/>
+  </td>
+</tr>
+<tr>
+<td><img src="app/src/main/assets/profile.png" width="300"/></td>
+<td><img src="app/src/main/assets/edit.png" width="300"/></td>
+</tr>
+</table>
+
+
 
 ---
 
