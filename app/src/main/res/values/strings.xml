@@ -13,6 +13,7 @@
     <string name="good_morning">Good morning</string>
     <string name="good_evening">Good evening</string>
     <string name="good_afternoon">Good afternoon</string>
+    <string name="good_night">Good night</string>
     <string name="add_task">Add task</string>
     <string name="edit_task">Edit task</string>
     <string name="user_profile_picture">User profile picture</string>

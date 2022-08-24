@@ -19,6 +19,7 @@ import com.abulnes16.purrtodo.TaskApplication
 import com.abulnes16.purrtodo.data.ProfileDataStore
 import com.abulnes16.purrtodo.data.Task
 import com.abulnes16.purrtodo.databinding.FragmentHomeBinding
+import com.abulnes16.purrtodo.utils.DataTransformationUtil
 import com.abulnes16.purrtodo.viewmodels.TaskViewModel
 import com.abulnes16.purrtodo.viewmodels.TaskViewModelFactory
 import kotlinx.coroutines.launch
@@ -53,6 +54,7 @@ class HomeFragment : Fragment() {
     private fun bind() {
         binding.floatingActionButton.setOnClickListener { goToAddTask() }
         binding.imgUser.setOnClickListener { goToProfile() }
+        binding.txtWelcome.text = DataTransformationUtil.getGreetingFromHour()
         bindTodosAdapter()
     }
 

@@ -108,6 +108,7 @@ class UserProfileFragment : Fragment() {
                 binding.profilePicture.setImageResource(R.drawable.blank_user)
             } else {
                 binding.profilePicture.setImageURI(user.profilePicture.toUri())
+                imageUri = user?.profilePicture?.toUri()
             }
         }
 
